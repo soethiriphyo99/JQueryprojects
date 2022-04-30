@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#cal").click(function(){
+				var get_number=$("#number").val();
+				// console.log(get_number);
+
+				var html='';
+				for(var i=1;i<=12;i++){
+					//console.log(i);
+					var result=get_number*i;
+					// console.log(result);
+					html += `<tr>
+							<td>${get_number} x ${i}
+							</td>
+							<td> = ${result}</td>
+					</tr>`
+
+
+				}
+				$("#tbody").html(html);
+			})
+		})
+	</script>
+</head>
+<body>
+	Number:<input type="number" name="" id="number">
+	<button id="cal">Calculate</button>
+	<table>
+		<tbody id="tbody">
+			
+		</tbody>
+	</table>
+
+</body>
+</html>

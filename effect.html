@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#hide").click(function(){
+				//$("p").hide('slow');
+				$("p").fadeOut('slow');
+			})
+
+			$("#show").click(function(){
+				// $("p").show('slow');
+				$("p").fadeIn('slow');
+			})
+
+			$("#toggle").click(function(){
+				// $("p").toggle('slow');
+				$("p").fadeToggle('slow');
+			})
+
+			$("#fade_to").click(function(){
+				$("h3").fadeTo(1000,0.1);
+
+			})
+
+
+		})
+	</script>
+</head>
+<body>
+	<p>Hello this is jQuery Effect Lesson. You can learn show, hide and toggle effect.</p>
+
+	<h3 style="background-color: pink;padding:100px;color:white;max-width: 200px;"> This is fade to effect!</h3>
+
+	<button id="hide">Hide</button>
+	<button id="show">Show</button>
+
+	<button id="toggle">Toggle</button>
+
+	<button id="fade_to">Fade To</button>
+
+
+
+</body>
+</html>

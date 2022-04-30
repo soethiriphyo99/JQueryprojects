@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var html='';
+			var no=1;
+
+			$("#add").click(function(){
+				var name=$("#name").val();
+				var email=$("#email").val();
+				var phone=$("#phone").val();
+				// console.log(name,email,phone);
+
+				 html+=`<tr>
+				 <td>${no++}</td>
+				 <td>${name}</td>
+				 <td>${email}</td>
+				 <td>${phone}</td>
+				 </tr>`;
+
+				 $("#tbody").html(html);
+
+
+			})
+		})
+	</script>
+</head>
+<body><center>
+
+	Name : <input type="text" id="name" name=""><br><br>
+	Email : <input type="email" id="email" name="">	<br><br>
+	Phone : <input type="number" id="phone" name=""><br><br>
+	<button id="add">Add</button>
+
+	<br><br>
+	<h3>Student List</h3>
+	<table border="1" cellpadding="10" cellspacing="0">
+		<thead><tr>
+			<th>No.</th>
+			<th>Name</th>
+
+			<th>Email</th>
+			<th>Phone</th>
+
+		</tr></thead>
+		<tbody id="tbody"></tbody>
+	</table>
+	</center>
+
+</body>
+</html>

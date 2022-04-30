@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="jquery.min.js">
+	</script>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+			$("#click").click(function(){
+				$("p").hide('slow',function(){
+					alert("p tag is hide!");
+				});
+
+			})
+
+			$("#p_click").click(function(){
+				$(".tag").hide('slow');
+			})
+
+			$("#this_click").click(function(){
+				$(this).hide();
+			})
+		})
+
+
+
+	</script>
+
+</head>
+<body>
+	<p>jQuery is Funny!</p>
+	<button id="click">Click</button>
+
+	<p id="p_click">This is p tag!</p>
+	<p id="this_click">This is p tag 2!</p>
+	<p class="tag">This is p tag 3!</p>
+	<h2 class="tag">This is h2 tag</h2>
+	<h2 class="tag">This is h3 tag</h2>
+
+	<ul>
+		<li>Apple</li>
+		<li>Orange</li>
+
+	</ul>
+
+
+
+
+</body>
+</html>

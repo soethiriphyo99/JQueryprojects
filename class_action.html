@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			$("#add_class").click(function(){
+				$("p").addClass('trip');
+
+
+			})
+			$("#remove_class").click(function(){
+				$("p").removeClass('trip');
+			})
+			$("#toggle_class").click(function(){
+				$("p").toggleClass('trip');
+			})
+
+			
+
+		})
+	</script>
+	<style type="text/css">
+		
+		.trip{
+			max-width: 200px;
+			background-color: green;
+			color:white;
+			text-align: center;
+			padding: 50px 0;
+		}
+	</style>
+</head>
+<body>
+
+	<p>I want to go trips!</p>
+	<button id="add_class">Add Class</button>
+	<button id="remove_class">Remove Class</button>
+	<button id="toggle_class">Toggle Class</button>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			getData();
+			$("#addStudent").show();
+				$("#editStudent").hide();
+
+			$("#add").click(function(){
+				var name=$("#name").val();
+				var email=$("#email").val();
+				var phone=$("#phone").val();
+
+				var year=$("#year").val();
+
+				//console.log(name,email,phone,year);
+
+				var stu={
+					stu_name:name,
+					stu_email:email,
+					stu_phone:phone,
+					stu_year:year,
+				}
+
+				var stuString=localStorage.getItem("students");
+
+				var stuArray;
+
+				if(stuString==null){
+					stuArray=Array();
+					// alert("localStorage does not has!");
+				}else{
+					// alert("localStorage is already!");
+					stuArray=JSON.parse(stuString);
+
+				}
+				stuArray.push(stu);
+				//console.log(stuArray);
+				var stuData=JSON.stringify(stuArray);
+				localStorage.setItem("students",stuData);
+				getData();
+
+
+
+
+			});
+			//$(".edit").click(function(){
+				//alert("hello edit!");
+				$("#tbody").on('click','.edit',function(){
+				$("#addStudent").hide();
+				$("#editStudent").show();
+				var id=$(this).data('eid');
+
+				var name=$(this).data('ename');
+				var email=$(this).data('eemail');
+				var phone=$(this).data('ephone');
+				var year=$(this).data('eyear');
+
+				//console.log(id,name,email,phone,year);
+				$("#edit_id").val(id);
+				$("#edit_name").val(name);
+				$("#edit_email").val(email);
+				$("#edit_phone").val(phone);
+				$("#edit_year").val(year);
+
+			})
+
+
+			$("#upd").click(function(){
+				var uid=$("#edit_id").val();
+				var uname=$("#edit_name").val();
+				var uemail=$("#edit_email").val();
+				var uphone=$("#edit_phone").val();
+				var uyear=$("#edit_year").val();
+
+				//console.log(uid,uname,uemail,uphone,uyear);
+
+				var stuString=localStorage.getItem("students");
+				if(stuString){
+					var stuArray=JSON.parse(stuString);
+
+					stuArray[uid].stu_name=uname;
+					stuArray[uid].stu_email=uemail;
+					stuArray[uid].stu_phone=uphone;
+					stuArray[uid].stu_year=uyear;
+
+
+					var stuData=JSON.stringify(stuArray);
+					localStorage.setItem("students",stuData);
+					getData();
+
+					$("#addStudent").show();
+					$("#editStudent").hide();
+
+				}
+
+
+
+
+			})
+
+			$("#tbody").on('click','.delete',function(){
+				var id=$(this).data('did');
+				// console.log(id);
+				var ans=confirm("Are you Sure Delete?");
+				if (ans) {
+
+					var stuString=localStorage.getItem("students");
+					if (stuString) {
+						var stuArray=JSON.parse(stuString);
+						stuArray.splice(id,1);
+
+						var stuData=JSON.stringify(stuArray);
+						localStorage.setItem("students",stuData);
+						getData();
+					}
+				}
+
+
+
+			})
+
+			function getData(){
+				var stuString=localStorage.getItem("students");
+				if (stuString){
+					var stuArray=JSON.parse(stuString);
+
+					var no=1;
+					var html='';
+
+					$.each(stuArray,function(i,v){
+						// console.log(i);
+						// console.log(v);
+						var name=v.stu_name;
+						var email=v.stu_email;
+						var phone=v.stu_phone;
+						var year=v.stu_year;
+
+						html +=`<tr>
+						<td>${no++}</td>
+						<td>${name}</td>
+						<td>${email}</td>
+						<td>${phone}</td>
+						<td>${year}</td>
+
+						<td>
+						<button class="edit" data-eid="${i}" data-ename="${name}" data-eemail="${email}" data-ephone="${phone}" data-eyear="${year}">Edit</button>
+
+						<button class="delete" data-did="${i}">Delete</button>
+						</td>
+
+
+						</tr>`
+					})
+					$("#tbody").html(html);
+
+				}
+			}
+
+		})
+	</script>
+</head>
+<body>
+
+	<div id="addStudent"><h2>Add Student Form</h2>
+		Name : <input type="text" name="" id="name"><br><br>
+		Email : <input type="email" id="email" name="">	<br><br>
+		Phone : <input type="number" id="phone" name=""><br><br>
+
+		Year : <select id="year">
+			<option value="first">First </option>
+			<option value="second">Second </option>
+			<option value="third">Third </option>
+
+		</select>
+		<br><br>
+		<button id="add">Add Student</button>
+		<br><br></div>
+
+		<div id="editStudent"><h2>Edit Student Form</h2>
+			<input type="hidden" name="" id="edit_id">
+			Name : <input type="text" name="" id="edit_name"><br><br>
+			Email : <input type="email" id="edit_email" name="">	<br><br>
+			Phone : <input type="number" id="edit_phone" name=""><br><br>
+
+			Year : <select id="edit_year">
+				<option value="first">First </option>
+				<option value="second">Second </option>
+				<option value="third">Third </option>
+
+			</select>
+			<br><br>
+			<button id="upd">Update Student</button>
+			<br><br></div>
+
+			<h3>Student List</h3>
+			<table border="1" cellspacing="0" cellpadding="18">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Phone</th>
+						<th>Year</th>
+						<th>Action</th>
+
+					</tr>
+				</thead>
+				<tbody id="tbody">
+
+				</tbody>
+			</table>
+
+
+		</body>
+		</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="count.js"></script>
+
+</head>
+<body>
+		<h2>
+			<a href="index.html">Home</a>
+			|
+				<a href="checkbox.html">Checkout<span id="item_count"></span></a>
+		</h2>
+
+		<table id="items" cellpadding="10" cellspacing="15" >
+			<tr>
+				<td>
+					<img src="image/keyboard.jpeg" width="200" height="300">
+					<p>Name: Keyboard</p>
+					<p>Price: 25000 mmk</p>
+					<button class="cart" data-id="1" data-name="keyboard" data-price=
+					"25000">Add to Card</button>
+				</td>
+				<td>
+				
+					<img src="image/mouse.jpeg" width="200" height="350">
+					<p>Name: Mouse</p>
+					<p>Price: 15000 mmk</p>
+					<button class="cart" data-id="2" data-name="mouse" data-price=
+					"15000">Add to Cart</button>
+				</td>
+				<td>
+	
+					<img src="image/laptop.jpeg" width="200" height="350">
+					<p>Name: Laptop</p>
+					<p>Price: 1700000 mmk</p>
+					<button class="cart" data-id="3" data-name="laptop" data-price=
+					"1700000">Add to Cart</button>
+				</td>
+			</tr>
+				<tr>
+				<td>
+	
+					<img src="image/camera.jpeg" width="200" height="350">
+					<p>Name: Camera</p>
+					<p>Price: 800000 mmk</p>
+					<button class="cart" data-id="4" data-name="camera" data-price=
+					"800000">Add to Cart</button>
+				</td>
+				<td>
+	
+					<img src="image/headphone.jpeg" width="200" height="350">
+					<p>Name: Headphone</p>
+					<p>Price: 60000 mmk</p>
+					<button class="cart" data-id="5" data-name="headphone" data-price=
+					"60000">Add to Cart</button>
+				</td>
+				<td>
+	
+					<img src="image/smarttv.jpeg" width="200" height="350">
+					<p>Name: Smart TV</p>
+					<p>Price: 700000 mmk</p>
+					<button class="cart" data-id="6" data-name="smarttv" data-price=
+					"700000">Add to Cart</button>
+				</td></tr>
+				<tr>
+				<td>
+	
+					<img src="image/hardisk.jpeg" width="200" height="350">
+					<p>Name: Hard Disk</p>
+					<p>Price: 60000 mmk</p>
+					<button class="cart" data-id="7" data-name="hardisk" data-price=
+					"60000">Add to Cart</button>
+				</td>
+				<td>
+	
+					<img src="image/printer.jpeg" width="200" height="350">
+					<p>Name: Printer</p>
+					<p>Price: 110000 mmk</p>
+					<button class="cart" data-id="8" data-name="printer" data-price=
+					"110000">Add to Cart</button>
+				</td>
+				<td>
+	
+					<img src="image/ups.jpeg" width="200" height="350">
+					<p>Name: UPS</p>
+					<p>Price: 400000 mmk</p>
+					<button class="cart" data-id="9" data-name="ups" data-price=
+					"400000">Add to Cart</button>
+				</td>
+
+			</tr>
+		</table>
+		<script>
+			$(document).ready(function(){
+				count();
+				$(".cart").click(function(){
+					var item_id=$(this).data('id');
+					var item_name=$(this).data('name');
+					var item_price=$(this).data('price');
+
+					var shop_item={
+						id:item_id,
+						name:item_name,
+						price:item_price,
+						qty:1
+					}
+
+					var shopString=localStorage.getItem("tech_shop");
+
+					var shopArray;
+					if (shopString==null) {
+						shopArray=Array();
+
+					}else{
+						shopArray=JSON.parse(shopString);
+
+					}
+
+					var status=false;
+
+
+					$.each(shopArray,function(i,v){
+						if (item_id==v.id) {
+							status=true;
+							v.qty++;
+
+						}
+					})
+
+					if (status==false) {
+						shopArray.push(shop_item);
+					}
+
+					//shopArray.push(shop_item);
+					var shopData=JSON.stringify(shopArray);
+					localStorage.setItem("tech_shop",shopData);
+					count();
+
+					//console.log(item_id,item_name,item_price);
+				
+				})
+			})
+		</script>
+</body>
+</html>

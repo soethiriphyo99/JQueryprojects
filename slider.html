@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			$("#click_slide").click(function(){
+				// $("#panel").slideDown("slow");
+				//$("#panel").slideUp('slow');
+				$("#panel").slideToggle('slow');
+			})
+
+		})
+
+	</script>
+
+	<style type="text/css">
+		#click_slide{
+			max-width: 150px;
+			background-color: black;
+			color: white;
+			text-align: center;
+			padding: 5px 0;
+			margin-bottom: 0;
+			cursor: pointer;
+		}
+
+		#panel{
+			max-width: 150px;
+			background-color: gray;
+			color: white;
+			padding: 50px 0;
+			text-align: center;
+			margin-top: 0;
+			display: none;
+		}
+
+	</style>
+</head>
+<body>
+	<p id="click_slide">Click Me</p>
+	<p id="panel">Hello Slider</p>
+
+
+
+</body>
+</html>

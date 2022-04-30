@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#bootcamp").mouseover(function(){
+				$(this).addClass('welcome');
+			})
+			$("#bootcamp").mouseout(function(){
+				$(this).removeClass('welcome');
+			})
+			$("#name").focus(function(){
+				$(this).css('background-color','cyan');
+			})
+		})
+	</script>
+
+	<style type="text/css">
+		.welcome{
+			max-width: 250px;
+			color: white;
+			background-color: blue;
+			padding: 50px 0;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<p id="bootcamp">Welcome to my Bootcamp!</p>
+	<input type="text" name="" id="name">
+
+</body>
+</html>

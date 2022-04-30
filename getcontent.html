@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#click").click(function(){
+				var get_text = $("h3").text();
+				// alert(text);
+				var get_html=$("h3").html();
+				// alert(html);\
+				$("#content").html(get_html);
+				$("#content1").text(get_text);
+
+				var get_name=$("#name").val();
+				//alert(get_name);
+
+				$("h2").html(get_name);
+
+
+			})
+
+		})
+	</script>
+</head>
+<body>
+	<h3>This <i>Break</i> time</h3>
+
+	<p id="content"></p>
+	<p id="content1"></p>
+	<h2></h2>
+
+	Name: <input type="text" name="" id="name">
+
+
+	<button id="click">Click</button>
+
+
+</body>
+</html>

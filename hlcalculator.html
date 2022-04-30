@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home Lone calculator</title>
+      <script type="text/javascript" src="jquery.min.js">
+      </script>
+      <script type="text/javascript">
+            $(document).ready(function()
+            {   
+                  $("#cal").click(function()
+                  { 
+
+                       var amount=parseInt($('#amount').val()); //for p
+                       var rate=$('#rate').val();
+                       var term=$('#term').val();
+                     
+                       var r=(rate/100)/12 ; //for r
+
+                       var nm=term*12; //for number of month
+                       var power=(1+r)**nm;
+                       var nu= r*power;   //numerator
+                       var de= power-1;   //denominator
+                       var pay=amount*(nu/de); //for payment
+
+                       let html1='';
+                       
+                       html1=`<tr bgcolor='lightblue'><th colspan='2' ><h3>Your Loan Payment</h3></th></tr>
+                              <tr><td>Monthly Amount </td><td> ${parseInt(pay)} </td></tr>
+                              <tr><td> ${term}  Years Total Interest </td><td><p></p></td></tr>
+                              <tr><td>Loan Amount</td><td>${amount} </td></tr>
+                              <tr><td width='400'>Interest</td><td width='400'>${rate}   %</td></tr>
+                              <tr><td>Term</td><td>${term}  years </td></tr>
+                              <br><br>`;
+                      $("tbody").append(html1);
+
+                       let html2='';
+                       html2+=`<tr bgcolor='lightblue'><th colspan='4'><h3>Loan Payment Over ${term}Years</h3></th></tr>
+                              <tr><th width='200'>Month No. </th><th width='200'>Principle </th><th width='200'>Interest</th><th width='150'>Payment</th></tr>`;
+
+                       var sum=0;
+                       for(var i=1;i<=nm;i++)
+                       {
+                         var interest=r*amount;
+                         sum=sum+interest;
+                         html2+=`<tr>
+                               <td>Month # ${i}</td>
+                               <td>${parseInt(amount)}</td>
+                               <td>${parseInt(interest)}</td>
+                               <td>${parseInt(pay)}</td>
+                               </tr>`;
+
+                         amount=(amount+interest)-pay;  
+                       }
+                  
+                        $("tbody").append(html2);
+
+                        let total=parseInt(sum);
+                        $("p").html(total); 
+                  });
+            });
+      </script>
+</head>
+<body>
+	<h2>Home Lone Calculator</h2>
+      <table cellpadding=10  > 
+        <thead cellpadding=10 >
+      	<tr style="background-color:lightblue"><td>Loan Amount:</td><td> <input type='number' id='amount'  ></td></tr>
+      	<tr style="background-color:lightblue"><td>Interest Rate:</td><td> <input type='number' id='rate'  ></td></tr>
+      	<tr style="background-color:lightblue"><td>Term:</td><td> <input type='number' id='term' ></td></tr>
+        <tr><td><input type="button" id="cal" name="calculate" value="Calculate"  style="background-color:lightblue;height: 40px;width:80px"></td></tr>
+        </thead>
+        <tbody border=1 cellpadding=10></tbody>
+      </table>
+      
+</body>
+</html>
